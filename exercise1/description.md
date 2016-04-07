@@ -6,7 +6,7 @@ You are going to write a simple web server that remembers how many times an endp
 Create a simple webserver that responds to '/' by returning `hello world`. I.e.
 
 ```
-$ curl http://localhost/
+$ curl http://localhost:5000/
 
 hello world
 ```
@@ -15,7 +15,7 @@ hello world
 Extend the webserver to respond to '/file1' by returning the contents of a json file `file1`. I.e
 
 ```
-$ curl http://localhost/file1
+$ curl http://localhost:5000/file1
 
 {
   "name": "file1",
