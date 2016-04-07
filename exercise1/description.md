@@ -1,6 +1,6 @@
 # Assignment
 
-We are going to write a simple web server that remembers how many times an endpoint is called.
+You are going to write a simple web server that remembers how many times an endpoint is called.
 
 ### Step 1
 Create a simple webserver that responds to '/' by returning `hello world`. I.e.
