@@ -1,8 +1,8 @@
 # Assignment
 
-## Summary
+We are going to write a simple web server that remembers how many times an endpoint is called.
 
-### 1
+### Step 1
 Create a simple webserver that responds to '/' by returning `hello world`. I.e.
 
 ```
@@ -21,6 +21,7 @@ $ curl http://localhost/file1
   "name": "file1",
   "count": 0
 }
+```
 
 ### Step 3
 Extend the webserver to remember the number of times '/file1' has been called. The return value of the 
@@ -36,12 +37,3 @@ $ curl http://localhost:5000/file1
 }
 ```
 
-
-Contents of `file1`:
-
-```
-{
-  "name": "file1",
-  "value": 0
-}
-```
