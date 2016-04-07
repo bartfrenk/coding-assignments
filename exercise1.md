@@ -12,7 +12,7 @@ hello world
 ```
 
 ### Step 2
-Extend the webserver to respond to '/file1' by returning the contents of a local file `file1`. I.e
+Extend the webserver to respond to '/file1' by returning the contents of a json file `file1`. I.e
 
 ```
 $ curl http://localhost/file1
@@ -33,7 +33,7 @@ $ curl http://localhost:5000/file1
 
 {
   "name": "file1",
-  "count": 29
+  "count": 30
 }
 ```
 
