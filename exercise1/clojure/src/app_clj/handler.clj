@@ -18,8 +18,8 @@
       (get k)
       json/write-str))
 
-(def state (atom {:file1 (load-data "../file1")
-                  :file2 (load-data "../file2")}))
+(def state (atom {:file1 (load-data "file1")
+                  :file2 (load-data "file2")}))
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
