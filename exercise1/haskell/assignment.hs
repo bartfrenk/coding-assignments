@@ -66,21 +66,10 @@ data FileData = FileData {
   count :: Int,
   -- underscore to suppress 'defined but not used' warning
   _name :: String
-}
+} deriving (Generic)
 
--- | Boilerplate to allow deserialization of JSON-ized 'FileData' objects.
--- Boilerplate is avoidable, but requires another language extension.
-instance FromJSON FileData where
-    parseJSON (Object v) = FileData <$>
-                           v .: "count" <*>
-                           v .: "name"
-    -- Any non Object value is of the wrong type, so fail.
-    parseJSON _          = mzero
-
-
--- | Boilerplate to allow serialization of JSON-ized 'FileData' objects.
-instance ToJSON FileData where
-    toJSON (FileData c n) = object ["name" .= n, "count" .= c]
+instance FromJSON FileData
+instance ToJSON FileData
 
 -- | Combining both into a single API
 
