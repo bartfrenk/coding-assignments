@@ -86,7 +86,7 @@ counterServer counter = do
 stepCounter :: TVar Int -> IO ()
 stepCounter counter = liftIO $ atomically $ modifyTVar counter (+ 1)
 
--- | Combining both into a single API
+-- | Combining components into a single API
 
 type API = HelloAPI :<|> ("file" :> FileAPI) :<|> ("counter" :> CounterAPI)
 
