@@ -10,7 +10,7 @@ To install dependencies
 
 To build the example
 
-   ghc assignment.hs
+    ghc assignment.hs
 
 To run the example
 
