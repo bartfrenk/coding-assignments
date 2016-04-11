@@ -2,11 +2,11 @@
 
 To install dependencies
 
-   cabal install servant
-   cabal install servant-server
-   cabal install wai
-   cabal install strict
-   cabal install stm
+    cabal install servant
+    cabal install servant-server
+    cabal install wai
+    cabal install strict
+    cabal install stm
 
 To build the example
 
@@ -14,12 +14,12 @@ To build the example
 
 To run the example
 
-   ./assignment
+    ./assignment
 
 To stress test the example
 
-   ab -n 10000 -c 10 http://127.0.0.1:8081/file
-   ab -n 10000 -c 10 http://127.0.0.1:8081/counter
+    ab -n 10000 -c 10 http://127.0.0.1:8081/file
+    ab -n 10000 -c 10 http://127.0.0.1:8081/counter
 
 ## Notes
 
@@ -73,7 +73,7 @@ Percentage of the requests served within a certain time (ms)
 
 Results on my DELL 5450 i5 for the /counter endpoint.
 
-...
+```
 Server Software:        Warp/3.2.6
 Server Hostname:        localhost
 Server Port:            8081
@@ -110,11 +110,11 @@ Percentage of the requests served within a certain time (ms)
   98%      1
   99%      1
  100%      3 (longest request)
-...
+```
 
 Results on my DELL 5450 i5 for the /file endpoint.
 
-...
+```
 Server Software:        Warp/3.2.6
 Server Hostname:        localhost
 Server Port:            8081
@@ -152,4 +152,4 @@ Percentage of the requests served within a certain time (ms)
   98%      2
   99%      2
  100%      6 (longest request)
-...
+```
