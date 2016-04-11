@@ -17,6 +17,8 @@ import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
 import System.Directory
+import Control.Concurrent.STM.TVar (TVar, readTVarIO, modifyTVar, newTVarIO)
+import Control.Monad.STM (atomically)
 import qualified System.IO.Strict as Strict
 import qualified Data.ByteString.Lazy.Char8 as BS
 
@@ -65,24 +67,39 @@ fileServer path = do
 data FileData = FileData {
   count :: Int,
   -- underscore to suppress 'defined but not used' warning
-  _name :: String
+  name :: String
 } deriving (Generic)
 
 instance FromJSON FileData
 instance ToJSON FileData
 
+-- | In memory counter
+
+type CounterAPI = Get '[JSON] FileData
+
+counterServer :: TVar Int -> Server CounterAPI
+counterServer counter = do
+  counter' <- liftIO $ readTVarIO counter
+  liftIO $ stepCounter counter
+  return $ FileData counter' "count.json"
+
+stepCounter :: TVar Int -> IO ()
+stepCounter counter = liftIO $ atomically $ modifyTVar counter (+ 1)
+
 -- | Combining both into a single API
 
-type API = HelloAPI :<|> ("count" :> FileAPI)
+type API = HelloAPI :<|> ("file" :> FileAPI) :<|> ("counter" :> CounterAPI)
 
 api :: Proxy API
 api = Proxy
 
-server :: FilePath -> Server API
-server path = return hello :<|> fileServer path
+server :: FilePath -> TVar Int -> Server API
+server path counter = return hello :<|> fileServer path :<|> counterServer counter
 
-app :: FilePath -> Application
-app path = serve api (server path)
+app :: FilePath -> TVar Int -> Application
+app path counter = serve api (server path counter)
 
 main :: IO ()
-main = run 8081 (app "count.json")
+main = do
+  counter <- newTVarIO 0
+  run 8081 (app "count.json" counter)

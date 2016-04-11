@@ -6,7 +6,7 @@ To install dependencies
 	cabal install servant-server
 	cabal install wai
 	cabal install strict
-
+    cabal install stm
 
 To build the example
 
@@ -18,12 +18,12 @@ To run the example
 
 To stress test the example
 
-	ab -n 10000 -c 10 http://127.0.0.1:8081/count
+	ab -n 10000 -c 10 http://127.0.0.1:8081/file
 
 ## Notes
 
 The solution drops requests when multiple access to the count file occur. So
-after running the stress test and then curling `curl http://127.0.0.1:8081/count`,
+after running the stress test and then curling `curl http://127.0.0.1:8081/file`,
 instead of 10001 as count you get a lower number due to the dropped requests.
 
 ## Results
@@ -35,7 +35,7 @@ Server Software:        Warp/3.2.6
 Server Hostname:        127.0.0.1
 Server Port:            8081
 
-Document Path:          /count
+Document Path:          /file
 Document Length:        37 bytes
 
 Concurrency Level:      10
